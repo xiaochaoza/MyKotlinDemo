@@ -1,0 +1,90 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.3.41'
+    repositories {
+        google()
+        jcenter()
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersion = 29
+    buildToolsVersion = "29.0.0"
+    minSdkVersion = 22
+    targetSdkVersion = 28
+    butterknife = '10.1.0'
+
+    versionCode = 1
+    versionName = '1.0.0'
+}
+
+ext.deps = [
+        core_ktx              : 'androidx.core:core-ktx:1.0.2',
+        appcompat             : 'androidx.appcompat:appcompat:1.0.2',
+        constraintlayout      : 'androidx.constraintlayout:constraintlayout:1.1.3',
+
+        butterknife           : "com.jakewharton:butterknife:$rootProject.butterknife",
+        butterknifeCompiler   : "com.jakewharton:butterknife-compiler:$rootProject.butterknife",
+
+        anko                  : 'org.jetbrains.anko:anko:0.10.8',
+
+//        recyclerview          : 'androidx.recyclerview:recyclerview:1.0.0',
+//
+//        rxjava                : 'io.reactivex.rxjava2:rxjava:2.2.0',
+//        rxandroid             : 'io.reactivex.rxjava2:rxandroid:2.0.2',
+//
+//        retrofit              : 'com.squareup.retrofit2:retrofit:2.5.0',
+//        retrofit_gson         : 'com.squareup.retrofit2:converter-gson:2.5.0',
+//        retrofit_rxjava       : 'com.squareup.retrofit2:adapter-rxjava2:2.5.0',
+//
+//        rxlifecycle           : 'com.trello.rxlifecycle2:rxlifecycle:2.2.1',
+//        rxlifecycle_android   : 'com.trello.rxlifecycle2:rxlifecycle-android:2.2.1',
+//        rxlifecycle_components: 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1',
+//
+//        okhttp_log            : 'com.squareup.okhttp3:logging-interceptor:3.14.1',
+//
+//        gson                  : 'com.google.code.gson:gson:2.8.5',
+//        glide                 : 'com.github.bumptech.glide:glide:4.9.0',
+////        lottie                : 'com.airbnb.android:lottie:2.7.0',
+//
+//        arouter               : 'com.alibaba:arouter-api:1.5.0',
+//        arouterComplier       : 'com.alibaba:arouter-compiler:1.2.2',
+//
+//        logger                : 'com.orhanobut:logger:2.2.0',
+
+//        eventBus              : 'org.greenrobot:eventbus:3.0.0',
+//        adapterHelper         :'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30',
+]
+
+ext.serverUrls = [
+        BASE_URL_JUHE         : "\"http://v.juhe.cn/\"",
+        BASE_URL_JISU         : "\"https://api.jisuapi.com/\"",
+        BASE_URL_LOCAL        : "\"http://localhost:8080/\"",
+]
+
+ext.keys = [
+        JUHE_APP_KEY          : "Q1e0I1M8bVVShic5G1NF4QPv",
+        JISU_APP_KEY          : "nC9pEnpqjBaCLDatGO9NmTX1UZon5lkj",
+]
+
