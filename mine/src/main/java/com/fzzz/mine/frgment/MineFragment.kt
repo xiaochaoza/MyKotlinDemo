@@ -1,26 +1,22 @@
 package com.fzzz.mykotlindemo.ui.mine
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.fzzz.framework.base.BaseFragment
+import com.fzzz.framework.common.MainModel
 import com.fzzz.mine.R
-import com.fzzz.mine.model.MineViewModel
+import kotlinx.android.synthetic.main.fragment_mine.*
 
-class MineFragment : Fragment() {
+class MineFragment(override val layoutID: Int = R.layout.fragment_mine) : BaseFragment() {
 
-    private lateinit var mainViewModel: MineViewModel
+    private lateinit var mainViewModel: MainModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mainViewModel = ViewModelProviders.of(this).get(MineViewModel::class.java)
-        mainViewModel.setContent("mine")
-        val root = inflater.inflate(R.layout.fragment_mine, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        mainViewModel.getContent().observe(this, Observer { textView.text = it })
-        return root
+    override fun initData() {
+        mainViewModel = ViewModelProviders.of(this).get(MainModel::class.java)
+        mainViewModel.setMineContent("mine")
+    }
+
+    override fun initView() {
+        mainViewModel.getMineContent().observe(this, Observer { text_mine.text = it })
     }
 }

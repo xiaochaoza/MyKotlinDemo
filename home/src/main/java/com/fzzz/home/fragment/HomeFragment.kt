@@ -1,28 +1,22 @@
 package com.fzzz.mykotlindemo.ui.home
 
-
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.fzzz.framework.base.BaseFragment
+import com.fzzz.framework.common.MainModel
 import com.fzzz.home.R
-import com.fzzz.home.model.HomeViewModel
+import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment() {
+class HomeFragment(override val layoutID: Int = R.layout.fragment_home) : BaseFragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeViewModel: MainModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        homeViewModel.setContent("home")
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.getContent().observe(this, Observer { textView.text = it })
-        return root
+    override fun initData() {
+        homeViewModel = ViewModelProviders.of(this).get(MainModel::class.java)
+        homeViewModel.setHomeContent("home")
     }
 
+    override fun initView() {
+        homeViewModel.getHomeContent().observe(this, Observer { text_home.text = it })
+    }
 }
